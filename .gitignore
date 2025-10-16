@@ -1,0 +1,15 @@
+.cache/
+dsk/
+dox/
+dl/
+mus/
+pic/
+pub/
+tpl/
+vid/
+
+srv/
+
+.lesshst
+.ssh/
+*~
