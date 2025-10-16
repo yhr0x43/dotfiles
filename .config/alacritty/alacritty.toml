@@ -4,5 +4,8 @@ live_config_reload = true
 [window]
 opacity = 0.9
 
+[terminal]
+shell = { program = "/bin/bash", args = ["--init-file", "~/.config/bash/bashrc"] }
+
 [font]
 #normal = { family = "FreeMono", style = "Regular" }

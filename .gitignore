@@ -1,3 +1,4 @@
+# XDG User Dirs
 .cache/
 dsk/
 dox/
@@ -8,8 +9,14 @@ pub/
 tpl/
 vid/
 
+# Personal Data Dirs
 srv/
 
-.lesshst
+# Browser, see status:
+# https://bugzilla.mozilla.org/show_bug.cgi?id=259356
+# https://phabricator.services.mozilla.com/D6995
+.librewolf/
+.mozilla/
+
+# XDG won't fix
 .ssh/
-*~
