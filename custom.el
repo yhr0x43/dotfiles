@@ -17,7 +17,8 @@
  '(kept-new-versions 6)
  '(kept-old-versions 2)
  '(menu-bar-mode nil)
- '(package-selected-packages '(magit multiple-cursors rainbow-delimiters))
+ '(package-selected-packages
+   '(json-mode magit multiple-cursors rainbow-delimiters web-mode))
  '(send-mail-function 'smtpmail-send-it)
  '(smtpmail-smtp-server "yhrcl.org")
  '(smtpmail-smtp-service 465)

@@ -47,13 +47,13 @@
 
 ;;(use-package powershell)
 
-;; (use-package forth-mode
-;;   :load-path (lambda () (when (eq system-type 'windows-nt) "c:/Program Files/gforth"))
-;;   :init
-;; (load "gforth"))
+(use-package forth-mode
+  :load-path (lambda () (when (eq system-type 'windows-nt) "c:/Program Files/gforth"))
+  :init
+  (load "gforth"))
 
-;(use-package rainbow-delimiters
-;  :hook emacs-lisp-mode)
+;;(use-package rainbow-delimiters
+;;  :hook emacs-lisp-mode)
 
 (use-package web-mode
   :defer t
