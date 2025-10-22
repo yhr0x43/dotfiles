@@ -15,3 +15,5 @@ compinit -d ~/.cache/zsh/zcompdump-$ZSH_VERSION
 
 alias ls='ls --color=auto'
 alias grep='grep --color=auto'
+
+export GPG_TTY=$(tty)
