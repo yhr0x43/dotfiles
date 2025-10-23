@@ -4,7 +4,7 @@ Documentation=man:gpg-agent(1)
 
 [Socket]
 # gpgconf --list-dirs agent-socket
-ListenStream=%t/gnupg/d.q7aeot1djg96z6wdinfgskmc/S.gpg-agent
+ListenStream=%t/gnupg`'GPGSOCKETSUBDIR`'/S.gpg-agent
 FileDescriptorName=std
 SocketMode=0600
 DirectoryMode=0700

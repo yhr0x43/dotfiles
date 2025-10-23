@@ -59,9 +59,10 @@ srv/
 # TODO: why is pulse cookie here?
 .config/pulse/
 .config/vlc/
+.config/wireshark/
 .config/xfce4/
 
-
 # Not Managed by Git
+!.local/share/gnupg/gpg-agent.conf
 .local/share/gnupg/
 .local/share/password-store/

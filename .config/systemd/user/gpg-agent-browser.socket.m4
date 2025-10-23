@@ -4,7 +4,7 @@ Documentation=man:gpg-agent(1)
 
 [Socket]
 # gpgconf --list-dirs agent-browser-socket
-ListenStream=%t/gnupg/d.q7aeot1djg96z6wdinfgskmc/S.gpg-agent.browser
+ListenStream=%t/gnupg`'GPGSOCKETSUBDIR`'/S.gpg-agent.browser
 FileDescriptorName=browser
 Service=gpg-agent.service
 SocketMode=0600

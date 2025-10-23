@@ -4,7 +4,7 @@ Documentation=man:gpg-agent(1) man:ssh-add(1) man:ssh-agent(1) man:ssh(1)
 
 [Socket]
 # gpgconf --list-dirs agent-ssh-socket
-ListenStream=%t/gnupg/d.q7aeot1djg96z6wdinfgskmc/S.gpg-agent.ssh
+ListenStream=%t/gnupg`'GPGSOCKETSUBDIR`'/S.gpg-agent.ssh
 FileDescriptorName=ssh
 Service=gpg-agent.service
 SocketMode=0600
