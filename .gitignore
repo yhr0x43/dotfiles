@@ -43,6 +43,7 @@ srv/
 .local/share/gvfs-metadata/
 .local/share/hyprland/
 .local/share/vlc/
+.local/share/zsh/history
 
 # Auto-Generated Config Files
 .config/GIMP/
