@@ -34,9 +34,9 @@
          (emacs-lisp-mode . whitespace-mode)))
 
 (use-package multiple-cursors
-  :bind (("C-<return>" . mc/edit-lines)
-         ("C->" . mc/mark-next-like-this)
-         ("C-<" . mc/mark-previous-like-this)))
+  :bind (("C-C <return>" . mc/edit-lines)
+         ("C-C ." . mc/mark-next-like-this)
+         ("C-C ," . mc/mark-previous-like-this)))
 
 ;; c-mode
 (use-package cc-mode
