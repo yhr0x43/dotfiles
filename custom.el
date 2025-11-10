@@ -18,7 +18,8 @@
  '(kept-old-versions 2)
  '(menu-bar-mode nil)
  '(package-selected-packages
-   '(json-mode magit multiple-cursors rainbow-delimiters web-mode))
+   '(## arduino-mode json-mode magit multiple-cursors rainbow-delimiters
+        sudo-edit web-mode))
  '(send-mail-function 'smtpmail-send-it)
  '(smtpmail-smtp-server "yhrcl.org")
  '(smtpmail-smtp-service 465)
