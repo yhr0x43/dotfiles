@@ -1,8 +1,12 @@
 ;;;; init.el  -*- lexical-binding:t -*-
 (setq debug-on-error t)
 
-;; here stores stand-alone elisp files
+(require 'package)
+(add-to-list 'package-archives
+             '("melpa-stable" . "https://stable.melpa.org/packages/") t)
+(package-initialize)
 
+;; here stores stand-alone elisp files
 (add-to-list 'load-path (expand-file-name "local" user-emacs-directory))
 
 ;; separate custom.el file
@@ -66,6 +70,10 @@
 
 (use-package conf-windows-mode
   :mode "\\.ini\\'")
+
+;; melpa packages
+(use-package sudo-edit
+  :bind (("C-C C-r" . sudo-edit)))
 
 ;; load this after everything else per recommendation by envrc author
 ;; https://github.com/purcell/envrc#usage
