@@ -7,3 +7,5 @@ server/
 url/
 transient/
 network-security.eld
+tramp
+.mc-lists.el
