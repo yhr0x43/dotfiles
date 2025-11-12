@@ -14,19 +14,29 @@ vid/
 
 # Personal Data Dirs
 srv/
+src/
+shr/
 
 # Browser, see status:
 # https://bugzilla.mozilla.org/show_bug.cgi?id=259356
 # https://phabricator.services.mozilla.com/D6995
 .librewolf/
 .mozilla/
+.pki/
 
 # XDG won't fix
 .ssh/
 
-# Hardcoded C# library
+# Hardcoded not XDG-compiant
 .aspnet/
 .dotnet/
+.steam/
+.steampath
+.steampid
+# Created by DBeaver
+.swt/
+.java/
+.eclipse/
 
 # Auto-Generated State Files
 .local/share/*.xbel*
@@ -44,6 +54,13 @@ srv/
 .local/share/hyprland/
 .local/share/vlc/
 .local/share/zsh/history
+.local/share/DBeaverData/
+.local/share/PrismLauncher/
+.local/share/Steam/
+.local/share/icons/
+.local/share/mime/
+.local/share/vulkan/
+.local/share/arduino15/
 
 # Auto-Generated Config Files
 .config/GIMP/
@@ -51,6 +68,7 @@ srv/
 .config/Thunar/
 .config/cat_installer/
 .config/dconf/
+.config/docker/
 .config/fcitx/
 .config/fcitx5/
 .config/go/
@@ -62,6 +80,13 @@ srv/
 .config/vlc/
 .config/wireshark/
 .config/xfce4/
+.config/Cursor/
+.config/arduino15/
+.config/discord/
+.config/furnace/
+.config/inkscape/
+.config/ristretto/
+.config/xarchiver/
 
 # Not Managed by Git
 !.local/share/gnupg/gpg-agent.conf
