@@ -1,0 +1,9 @@
+# -*- mode: shell-script -*-
+# ~/.config/uwsm/env
+# Despite the recommendation from Hyprland wiki, most environment vars are set
+# through "~/.config/environment.d/*.conf". This way variables can be changed
+# and reloaded through "systemctl --user daemon-reload" without restarting
+# the compositor.
+
+# FIXME: setting PATH through environment.d doesn't seem to work?
+export PATH=${HOME}/.local/bin:${PATH}
