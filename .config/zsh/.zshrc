@@ -35,3 +35,5 @@ alias ls='ls --color=auto'
 alias grep='grep --color=auto'
 
 export GPG_TTY=$(tty)
+
+alias arduino-cli='arduino-cli --config-file $XDG_CONFIG_HOME/arduino15/arduino-cli.yaml'

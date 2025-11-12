@@ -11,3 +11,12 @@ NUGET_PACKAGES=${XDG_CACHE_HOME}/NuGetPackages
 OMNISHARPHOME=${XDG_CONFIG_HOME}/omnisharp
 
 PASSWORD_STORE_DIR=${XDG_DATA_HOME}/password-store
+
+_JAVA_OPTIONS=-Djava.util.prefs.userRoot="${XDG_CONFIG_HOME}"/java
+
+SCREENRC="${XDG_CONFIG_HOME}"/screen/screenrc
+SCREENDIR="${XDG_RUNTIME_DIR}"/screen
+
+GFORTHHIST="${XDG_DATA_HOME}"
+
+WINEPREFIX="${XDG_DATA_HOME}"/wineprefixes/default
