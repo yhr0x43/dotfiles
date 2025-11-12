@@ -1,0 +1,74 @@
+#+STARTUP: overview
+
+* yhr_C's dotfiles
+
+** Local TODOs
+*** TODO [#C] Emacs restarts itself shortly after startup
+*** TODO [#B] Inegrate 'app2unit' with 'uwsm'
+https://github.com/Vladimir-csp/app2unit
+also Fuzzel integration (replaces wofi?)
+https://codeberg.org/dnkl/fuzzel/
+uwsm seems to have problem with env vars?
+*** TODO [#B] Bluetooth Setup
+now using bluetoothctl
+
+"scan off" failure
+Failed to stop discovery: org.bluez.Error.Failed
+
+see https://wiki.archlinux.org/title/Blueman for an applet
+
+*** TODO [#B] Image Viewer
+https://wiki.archlinux.org/title/List_of_applications/Multimedia#Image_viewers
+imv: don't have good support for webp and gif extensibility unknown
+Ristretto: no support for gestures? too much feature
+*** TODO [#C] Dark Mode
+https://wiki.archlinux.org/title/Dark_mode_switching
+GTK4 setting should be done:
+#+begin_src: sh
+gsettings set org.gnome.desktop.interface color-scheme 'prefer-dark'
+#+end_src
+*** TODO [#B] Terminal Emulator
+ - Rendering artifact in 'foot'
+ - URL opening
+ - sixel graphic
+ - 'xterm-256color' compatibility
+
+*** TODO [#B] Finger Print Sensor
+device on NEAPMAL: 2808:9338
+https://gitlab.freedesktop.org/libfprint/wiki/-/wikis/Devices/2808:93a9
+*** TODO [#B] Emacs auth store
+info page Emacs > Auth-source > Help for users
+
+*** TODO [#B] D-Bus Service Files
+#+begin_src
+dbus-broker-launch[677]: Service file '/usr/share/dbus-1/services/org.xfce.Thunar.FileManager1.service' is not named after the D-Bus name 'org.freedesktop.FileManager1'.
+░░ Subject: Invalid service file
+░░ Defined-By: dbus-broker
+░░ Support: https://groups.google.com/forum/#!forum/bus1-devel
+░░
+░░ A service file is a ini-type configuration file.
+░░
+░░ It has one required section
+░░ named [D-BUS Service]. The section contains the required key 'Name', which
+░░ must be a valid D-Bus name that is unique across all service files. It also
+░░ contains at least one of the two optional keys 'SystemdService' and 'Exec',
+░░ as well as optionally the key 'User'. Exec must be a valid shell command and
+░░ User must be a valid user on the system.
+░░
+░░ A service file should be named after the D-Bus name it configures. That is
+░░ a file containing Name=org.foo.bar1 should be named org.foo.bar1.service.
+░░ For backwards compatibility, we only warn when files do not follow this
+░░ convention when run as a user bus. The system bus considers this an error
+░░ and ignores the service file.
+#+end_src
+
+*** DONE [#A] ZSH history not working
+*** DONE [#B] Utilitarian Wallpaper
+  - ASCII table
+  - ANSI Escape Codes
+  - Unicode block range
+  - C operator precedence
+  - My Hyprland keybinds
+  - Pascal's triangle
+*** DONE [#C] Config management / Macros
+*** DONE [#B] ZSH customization
