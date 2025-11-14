@@ -1,4 +1,3 @@
-# -*- mode: shell-script -*-
 # ~/.config/uwsm/env
 # Despite the recommendation from Hyprland wiki, most environment vars are set
 # through "~/.config/environment.d/*.conf". This way variables can be changed
@@ -7,3 +6,7 @@
 
 # FIXME: setting PATH through environment.d doesn't seem to work?
 export PATH=${HOME}/.local/bin:${PATH}
+
+# Local Variables:
+# mode: shell-script
+# End:
