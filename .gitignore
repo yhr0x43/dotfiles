@@ -1,95 +1,93 @@
 # XDG Base Dirs
-.cache/
-.local/state/
+/.cache/
+/.local/state/
 
 # XDG User Dirs
-dsk/
-dox/
-dl/
-mus/
-pic/
-pub/
-tpl/
-vid/
+/dsk/
+/dox/
+/dl/
+/mus/
+/pic/
+/pub/
+/tpl/
+/vid/
 
 # Personal Data Dirs
-srv/
-src/
-shr/
+/local/
 
 # Browser, see status:
 # https://bugzilla.mozilla.org/show_bug.cgi?id=259356
 # https://phabricator.services.mozilla.com/D6995
-.librewolf/
-.mozilla/
-.pki/
+/.librewolf/
+/.mozilla/
+/.pki/
 
 # XDG won't fix
-.ssh/
+/.ssh/
 
 # Hardcoded not XDG-compiant
-.aspnet/
-.dotnet/
-.steam/
-.steampath
-.steampid
-.cursor/
+/.aspnet/
+/.dotnet/
+/.steam/
+/.steampath
+/.steampid
+/.cursor/
 # Created by DBeaver
-.swt/
-.java/
-.eclipse/
+/.swt/
+/.java/
+/.eclipse/
 
 # Auto-Generated State Files
-.local/share/*.xbel*
-.local/share/NuGet/
-.local/share/Trash/
-.local/share/applications/mimeinfo.cache
-.local/share/dotnet/
-.local/share/emacs/
-.local/share/fcitx5/rime/build/
-.local/share/fcitx5/rime/installation.yaml
-.local/share/fcitx5/rime/luna_pinyin.userdb/
-.local/share/fcitx5/rime/sync/
-.local/share/fcitx5/rime/user.yaml
-.local/share/gvfs-metadata/
-.local/share/hyprland/
-.local/share/vlc/
-.local/share/zsh/history
-.local/share/DBeaverData/
-.local/share/PrismLauncher/
-.local/share/Steam/
-.local/share/icons/
-.local/share/mime/
-.local/share/vulkan/
-.local/share/arduino15/
+/.local/share/*.xbel*
+/.local/share/NuGet/
+/.local/share/Trash/
+/.local/share/applications/mimeinfo.cache
+/.local/share/dotnet/
+/.local/share/emacs/
+/.local/share/fcitx5/rime/build/
+/.local/share/fcitx5/rime/installation.yaml
+/.local/share/fcitx5/rime/luna_pinyin.userdb/
+/.local/share/fcitx5/rime/sync/
+/.local/share/fcitx5/rime/user.yaml
+/.local/share/gvfs-metadata/
+/.local/share/hyprland/
+/.local/share/vlc/
+/.local/share/zsh/history
+/.local/share/DBeaverData/
+/.local/share/PrismLauncher/
+/.local/share/Steam/
+/.local/share/icons/
+/.local/share/mime/
+/.local/share/vulkan/
+/.local/share/arduino15/
 
 # Auto-Generated Config Files
-.config/GIMP/
-.config/QtProject.conf
-.config/Thunar/
-.config/cat_installer/
-.config/dconf/
-.config/docker/
-.config/fcitx/
-.config/fcitx5/
-.config/go/
-.config/ibus/
-.config/libreoffice/
-.config/mozc/
+/.config/GIMP/
+/.config/QtProject.conf
+/.config/Thunar/
+/.config/cat_installer/
+/.config/dconf/
+/.config/docker/
+/.config/fcitx/
+/.config/fcitx5/
+/.config/go/
+/.config/ibus/
+/.config/libreoffice/
+/.config/mozc/
 # TODO: why is pulse cookie here?
-.config/pulse/
-.config/vlc/
-.config/wireshark/
-.config/xfce4/
-.config/Cursor/
-.config/arduino15/
-.config/discord/
-.config/furnace/
-.config/inkscape/
-.config/ristretto/
-.config/xarchiver/
+/.config/pulse/
+/.config/vlc/
+/.config/wireshark/
+/.config/xfce4/
+/.config/Cursor/
+/.config/arduino15/
+/.config/discord/
+/.config/furnace/
+/.config/inkscape/
+/.config/ristretto/
+/.config/xarchiver/
 
 # Not Managed by Git
-!.local/share/gnupg/gpg-agent.conf
-.local/share/gnupg/
-.local/share/password-store/
+!/.local/share/gnupg/gpg-agent.conf
+/.local/share/gnupg/
+/.local/share/password-store/
