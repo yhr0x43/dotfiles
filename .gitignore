@@ -58,6 +58,7 @@
 /.local/share/Steam/
 /.local/share/icons/
 /.local/share/mime/
+/.local/share/man/
 /.local/share/vulkan/
 /.local/share/arduino15/
 
@@ -91,3 +92,5 @@
 !/.local/share/gnupg/gpg-agent.conf
 /.local/share/gnupg/
 /.local/share/password-store/
+/.local/src/
+!/.local/src/app2unit
