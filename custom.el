@@ -12,6 +12,7 @@
  '(delete-old-versions t)
  '(display-line-numbers 'relative)
  '(font-latex-fontify-script nil)
+ '(image-dired-marking-shows-next nil)
  '(indent-tabs-mode nil)
  '(inhibit-startup-screen t)
  '(kept-new-versions 6)
