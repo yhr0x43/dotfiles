@@ -1,3 +1,6 @@
 [submodule ".local/src/app2unit"]
 	path = .local/src/app2unit
 	url = https://github.com/Vladimir-csp/app2unit.git
+[submodule ".config/emacs"]
+        path = .config/emacs
+        url = git@github.com:yhr0x43/emacs.d.git
