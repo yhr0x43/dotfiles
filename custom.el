@@ -10,6 +10,10 @@
  '(column-number-mode t)
  '(custom-enabled-themes '(tango-dark))
  '(delete-old-versions t)
+ '(dired-guess-shell-alist-user
+   '((".*"
+      (when (executable-find "app2unit-open-service")
+        "app2unit-open-service -- "))))
  '(display-line-numbers 'relative)
  '(font-latex-fontify-script nil)
  '(image-dired-marking-shows-next nil)
