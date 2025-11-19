@@ -39,9 +39,13 @@
 
 # Auto-Generated State Files
 /.local/share/*.xbel*
+/.local/share/DBeaverData/
 /.local/share/NuGet/
+/.local/share/PrismLauncher/
+/.local/share/Steam/
 /.local/share/Trash/
 /.local/share/applications/mimeinfo.cache
+/.local/share/arduino15/
 /.local/share/dotnet/
 /.local/share/emacs/
 /.local/share/fcitx5/rime/build/
@@ -51,43 +55,39 @@
 /.local/share/fcitx5/rime/user.yaml
 /.local/share/gvfs-metadata/
 /.local/share/hyprland/
-/.local/share/vlc/
-/.local/share/zsh/history
-/.local/share/DBeaverData/
-/.local/share/PrismLauncher/
-/.local/share/Steam/
 /.local/share/icons/
-/.local/share/mime/
 /.local/share/man/
+/.local/share/mime/
+/.local/share/vlc/
 /.local/share/vulkan/
-/.local/share/arduino15/
 /.local/share/wineprefixes/
+/.local/share/zsh/history
 
 # Auto-Generated Config Files
+/.config/Cursor/
 /.config/GIMP/
 /.config/QtProject.conf
 /.config/Thunar/
+/.config/arduino15/
 /.config/cat_installer/
 /.config/dconf/
+/.config/discord/
 /.config/docker/
 /.config/fcitx/
 /.config/fcitx5/
+/.config/furnace/
 /.config/go/
 /.config/ibus/
+/.config/inkscape/
 /.config/libreoffice/
 /.config/mozc/
 # TODO: why is pulse cookie here?
 /.config/pulse/
+/.config/ristretto/
 /.config/vlc/
 /.config/wireshark/
-/.config/xfce4/
-/.config/Cursor/
-/.config/arduino15/
-/.config/discord/
-/.config/furnace/
-/.config/inkscape/
-/.config/ristretto/
 /.config/xarchiver/
+/.config/xfce4/
 
 # Not Managed by Git
 !/.local/share/gnupg/gpg-agent.conf
