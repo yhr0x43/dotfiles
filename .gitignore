@@ -61,6 +61,7 @@
 /.local/share/man/
 /.local/share/vulkan/
 /.local/share/arduino15/
+/.local/share/wineprefixes/
 
 # Auto-Generated Config Files
 /.config/GIMP/
