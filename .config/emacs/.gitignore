@@ -1,0 +1,12 @@
+/.mc-lists.el
+/auto-save-list/
+/eln-cache/
+/elpa/
+/image-dired/
+/local/
+/network-security.eld
+/server/
+/tramp
+/transient/
+/tree-sitter/
+/url/
