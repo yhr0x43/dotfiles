@@ -22,6 +22,8 @@
  '(kept-new-versions 6)
  '(kept-old-versions 2)
  '(menu-bar-mode nil)
+ '(mu4e-get-mail-command "mbsync -a")
+ '(mu4e-update-interval 300)
  '(package-selected-packages
    '(## arduino-mode json-mode magit multiple-cursors rainbow-delimiters
         sudo-edit web-mode))

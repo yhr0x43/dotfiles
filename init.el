@@ -38,6 +38,8 @@
          ("C->" . mc/mark-next-like-this)
          ("C-<" . mc/mark-previous-like-this)))
 
+(require 'mu4e)
+
 ;; c-mode
 (use-package cc-mode
   :config
