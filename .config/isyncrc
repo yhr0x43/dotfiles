@@ -1,0 +1,74 @@
+# -*- mode: conf -*-
+# ~/.config/isyncrc
+# Notes from archwiki about possible SSL errors
+# https://wiki.archlinux.org/title/Isync#Troubleshooting
+
+# ----------------------------------------------------------------------------------------------------
+
+IMAPStore gmail0-remote
+Host imap.gmail.com
+UserCmd "pass show mail/google.com/account0 | awk '/^login: (.*)/{print(substr($0,8))}'"
+PassCmd "pass show mail/google.com/account0 | awk 'NR==1'"
+TLSType IMAPS
+CertificateFile /etc/ssl/certs/ca-certificates.crt
+
+MaildirStore gmail0-local
+SubFolders Verbatim
+# The trailing "/" is important
+Path ~/.local/mail/gmail0/
+Inbox ~/.local/mail/gmail0/Inbox
+
+Channel gmail0
+Far :gmail0-remote:
+Near :gmail0-local:
+# Exclude everything under the internal [Gmail] folder, except the interesting folders
+Patterns * ![Gmail]* "[Gmail]/Sent Mail" "[Gmail]/Starred" "[Gmail]/All Mail"
+Create Both
+Expunge Both
+SyncState *
+
+# ----------------------------------------------------------------------------------------------------
+
+# IMAPStore gmail1-remote
+# Host imap.gmail.com
+# UserCmd "pass show mail/google.com/account1 | awk '/^login: (.*)/{print(substr($0,8))}'"
+# PassCmd "pass show mail/google.com/account1 | awk 'NR==1'"
+# TLSType IMAPS
+# CertificateFile /etc/ssl/certs/ca-certificates.crt
+
+# MaildirStore gmail1-local
+# SubFolders Verbatim
+# # The trailing "/" is important
+# Path ~/.local/mail/gmail1/
+# Inbox ~/.local/mail/gmail1/Inbox
+
+# Channel gmail1
+# Far :gmail1-remote:
+# Near :gmail1-local:
+# # Exclude everything under the internal [Gmail] folder, except the interesting folders
+# Patterns * ![Gmail]* "[Gmail]/Sent Mail" "[Gmail]/Starred" "[Gmail]/All Mail"
+# Create Both
+# Expunge Both
+# SyncState *
+
+# ----------------------------------------------------------------------------------------------------
+
+IMAPStore yhrcl-remote
+Host yhrcl.org
+UserCmd "pass show mail/yhrcl.org/yhrc | awk '/^login: (.*)/{print(substr($0,8))}'"
+PassCmd "pass show mail/yhrcl.org/yhrc | awk 'NR==1'"
+TLSType IMAPS
+CertificateFile /etc/ssl/certs/ca-certificates.crt
+
+MaildirStore yhrcl-local
+SubFolders Verbatim
+Path ~/.local/mail/yhrcl/
+Inbox ~/.local/mail/yhrcl/Inbox
+
+Channel yhrcl
+Far :yhrcl-remote:
+Near :yhrcl-local:
+Patterns *
+Create Both
+Expunge Both
+SyncState *

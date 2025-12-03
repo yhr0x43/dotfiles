@@ -13,6 +13,7 @@
 (setq custom-file (expand-file-name "custom.el" user-emacs-directory))
 (load custom-file)
 
+;; local/user.el contains device-local or private values
 (load "user.el")
 
 ;; transparency
@@ -38,9 +39,45 @@
          ("C->" . mc/mark-next-like-this)
          ("C-<" . mc/mark-previous-like-this)))
 
-(require 'mu4e)
+;; https://systemcrafters.net/emacs-mail/managing-multiple-accounts/
+(use-package mu4e
+  :config
+  ;; This is set to 't' to avoid mail syncing issues when using mbsync
+  (setq mu4e-change-filenames-when-moving t)
 
-;; c-mode
+  (setq mu4e-get-mail-command "mbsync -a")
+  (setq mu4e-maildir "~/.local/mail")
+
+  ;; Context specific variables are set in local/user.el
+  (setq mu4e-contexts
+        (list
+         (make-mu4e-context
+          :name rc/gmail0-name
+          :match-func
+          (lambda (msg)
+            (when msg
+              (string-prefix-p rc/gmail0-dir (mu4e-message-field msg :maildir))))
+          :vars `((user-mail-address . ,rc/gmail0-email)
+                  (user-full-name    . ,rc/gmail0-fullname)
+                  (mu4e-drafts-folder . ,(concat rc/gmail0-dir "/Drafts"))
+                  (mu4e-sent-folder   . ,(concat rc/gmail0-dir "/Sent Mail"))
+                  (mu4e-refile-folder . ,(concat rc/gmail0-dir "/All Mail"))
+                  (mu4e-trash-folder  . ,(concat rc/gmail0-dir "/Trash"))))
+         (make-mu4e-context
+          :name rc/yhrcl-name
+          :match-func
+          (lambda (msg)
+            (when msg
+              (string-prefix-p rc/yhrcl-dir (mu4e-message-field msg :maildir))))
+          :vars `((user-mail-address . ,rc/yhrcl-email)
+                  (user-full-name    . ,rc/yhrcl-fullname)
+                  (mu4e-drafts-folder . "/Drafts")
+                  (mu4e-sent-folder   . "/Sent")
+                  (mu4e-refile-folder . "/Archive")
+                  (mu4e-trash-folder  . "/Trash")))))
+  (setq mu4e-maildir-shortcuts
+        '(("/Inbox" . ?i))))
+
 (use-package cc-mode
   :config
   (setq-default c-basic-offset 4

@@ -95,3 +95,6 @@
 /.local/share/password-store/
 /.local/src/
 !/.local/src/app2unit
+/.local/mail/
+/.config/git/
+!/.config/git/config
