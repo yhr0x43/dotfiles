@@ -37,6 +37,12 @@
 /.java/
 /.eclipse/
 
+# Flutter pending XDG-compliance fix
+/.config/tool_state
+/.dart-tool
+/.flutter
+/.pub-cache
+
 # Auto-Generated State Files
 /.local/share/*.xbel*
 /.local/share/DBeaverData/
@@ -46,6 +52,7 @@
 /.local/share/Trash/
 /.local/share/applications/mimeinfo.cache
 /.local/share/arduino15/
+/.local/share/cargo/
 /.local/share/dotnet/
 /.local/share/emacs/
 /.local/share/fcitx5/rime/build/
@@ -58,6 +65,8 @@
 /.local/share/icons/
 /.local/share/man/
 /.local/share/mime/
+/.local/share/org.localsend.localsend_app/
+/.local/share/rustup/
 /.local/share/vlc/
 /.local/share/vulkan/
 /.local/share/wineprefixes/
