@@ -96,6 +96,7 @@
 # TODO: why is pulse cookie here?
 /.config/pulse/
 /.config/ristretto/
+/.config/tailscale/
 /.config/vlc/
 /.config/wireshark/
 /.config/xarchiver/
