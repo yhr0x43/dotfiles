@@ -99,6 +99,7 @@
 /.config/xfce4/
 
 # Not Managed by Git
+/.local/bin/
 !/.local/share/gnupg/gpg-agent.conf
 /.local/share/gnupg/
 /.local/share/password-store/
