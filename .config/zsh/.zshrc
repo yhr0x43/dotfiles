@@ -33,6 +33,9 @@ PS1="%(1j:%F{yellow}[%j]%f:)%(?::%F{red}(%?%)%f)%m:%F{blue}%~%f%F{green}%#%f "
 
 alias ls='ls --color=auto'
 alias grep='grep --color=auto'
+alias diff='diff --color=auto'
+
+export LESS="--RAW-CONTROL-CHARS --use-color"
 
 # this is a backup plan in case normal GUI gpg setup fails,
 # so it need not to be perfect, anywhere accessible is ok
