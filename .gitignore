@@ -34,10 +34,6 @@
 /.steampath
 /.steampid
 /.cursor/
-# Created by DBeaver
-/.swt/
-/.java/
-/.eclipse/
 
 # Flutter pending XDG-compliance fix
 /.config/tool_state
