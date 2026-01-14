@@ -21,6 +21,8 @@
 /.librewolf/
 /.mozilla/
 /.pki/
+# Zotero depends on firefox
+/.zotero/
 
 # XDG won't fix
 /.ssh/
@@ -71,6 +73,7 @@
 /.local/share/vulkan/
 /.local/share/wineprefixes/
 /.local/share/zsh/history
+/.local/share/Zotero
 
 # Auto-Generated Config Files
 /.config/Cursor/
