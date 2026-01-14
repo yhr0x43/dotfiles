@@ -1,0 +1,13 @@
+# ~/.config/zsh/.zshrc_distrobox
+
+# If not from distrobox, don't do anything
+[ -z "${DISTROBOX_ENTER_PATH}" -o -z "${CONTAINER_ID}" ] && return
+
+PS1="%(1j:%F{yellow}[%j]%f:)%(?::%F{red}(%?%)%f)%m%F{green}(${CONTAINER_ID})%f:%F{blue}%~%f%F{green}%#%f "
+
+# Container-specific rc
+if [ "${CONTAINER_ID}" = "ubuntu-ros" ]
+then
+    . /opt/ros/jazzy/setup.zsh
+    cd
+fi
