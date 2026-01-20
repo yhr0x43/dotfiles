@@ -68,6 +68,7 @@
 /.local/share/vlc/
 /.local/share/vulkan/
 /.local/share/wineprefixes/
+/.local/share/zathura/
 /.local/share/zsh/history
 /.local/share/Zotero
 

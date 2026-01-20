@@ -1,10 +1,9 @@
 [Added Associations]
-application/pdf=librewolf.desktop;
 
 [Removed Associations]
 
 [Default Applications]
-application/pdf=librewolf.desktop;
+application/pdf=org.pwmt.zathura.desktop
 image/x-farbfeld=imv.desktop;
 image/tiff=imv.desktop;
 image/tiff-fx=imv.desktop;
