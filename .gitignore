@@ -43,8 +43,9 @@
 
 # Not Managed by Git
 /.local/bin/
-!/.local/share/gnupg/gpg-agent.conf
+!/.local/bin/generate-gnupg-sockets
 /.local/share/gnupg/
+!/.local/share/gnupg/gpg-agent.conf
 /.local/share/password-store/
 /.local/src/
 !/.local/src/app2unit

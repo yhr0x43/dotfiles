@@ -1,0 +1,7 @@
+# Auto-generated gpg-agent socket drop-in
+/dirmngr.socket.d/dehome.conf
+/keyboxd.socket.d/dehome.conf
+/gpg-agent-ssh.socket.d/dehome.conf
+/gpg-agent-extra.socket.d/dehome.conf
+/gpg-agent-browser.socket.d/dehome.conf
+/gpg-agent.socket.d/dehome.conf

@@ -1,0 +1,39 @@
+#!/usr/bin/env sh
+
+# per gpgconf manual, output is percent-escaped
+gnupg-unescape() { IFS= ; read -r val; : "${val//\\/\%5C}"; printf \%q "${_//\%/\\x}"; }
+
+unit-name() { basename "$@" | sed -e 's/^S\.\([[:print:]]*\)$/\1/;s/\./-/g;s/$/.socket/'; }
+# TODO: naive socket path generation based on Arch setup
+#   - parse and substitute the .socket unit files?
+#   - pattern-matching to "unexpand" systemd paths?
+unit-socket-path() { echo "$@" | sed -e 's/\/run\/user\/[[:digit:]]*\//%t\//'; }
+
+gitignore="$XDG_CONFIG_HOME/systemd/user/.gitignore"
+echo "# Auto-generated gpg-agent socket drop-in" > $gitignore
+
+GNUPGHOME="$XDG_DATA_HOME/gnupg"
+gnupgdirnames="dirmngr-socket keyboxd-socket agent-ssh-socket agent-extra-socket agent-browser-socket agent-socket"
+units=""
+
+for name in $gnupgdirnames
+do
+    gpgpath=$(gpgconf --list-dirs "$name" | gnupg-unescape)
+    unitname=$(unit-name ${gpgpath})
+    units="$units $unitname"
+
+    dropindir="$XDG_CONFIG_HOME/systemd/user/${unitname}.d"
+    [ ! -d $dropindir ] && mkdir -p $dropindir
+
+    cat <<EOF > "$dropindir/dehome.conf"
+[Socket]
+ListenStream=$(unit-socket-path ${gpgpath})
+EOF
+    echo "/${unitname}.d/dehome.conf" >> $gitignore
+done
+
+systemctl --user daemon-reload
+systemctl --user stop $units
+systemctl --user stop gpg-agent.service
+systemctl --user start $units
+systemctl --user start gpg-agent.service
