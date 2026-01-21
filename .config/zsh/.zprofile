@@ -3,6 +3,6 @@
 # see pam_env.conf(5) for more detail
 
 # Don't get trapped by uwsm when in distrobox
-[ -n "${DISTROBOX_ENTER_PATH}" ] && \
+[ -z "${DISTROBOX_ENTER_PATH}" ] && \
 command -v uwsm && uwsm check may-start && \
     exec uwsm start hyprland-uwsm.desktop
