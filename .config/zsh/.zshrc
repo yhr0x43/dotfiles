@@ -25,12 +25,24 @@ then
     compinit -d ${XDG_CACHE_HOME}/zsh/zcompdump-$ZSH_VERSION
 fi
 
+command -v direnv >/dev/null && eval "$(direnv hook zsh)"
+
 HISTSIZE=1000
 SAVEHIST=1000
-setopt INC_APPEND_HISTORY_TIME
+setopt INC_APPEND_HISTORY_TIME HIST_IGNORE_DUPS
 
-PS1="%(1j:%F{yellow}[%j]%f:)%(?::%F{red}(%?%)%f)%m:%F{blue}%~%f%F{green}%#%f "
+function venv_ps(){
+  [[ -n ${VIRTUAL_ENV} ]] || return
+  echo "(${VIRTUAL_ENV_PROMPT:-${VIRTUAL_ENV:t:gs/%/%%}})"
+}
 
+# disables prompt mangling in virtual_env/bin/activate
+export VIRTUAL_ENV_DISABLE_PROMPT=1
+
+setopt PROMPT_SUBST
+PS1='%F{green}$(venv_ps)%f%(1j:%F{yellow}[%j]%f:)%(?::%F{red}(%?%)%f)%m:%F{blue}%~%f%F{green}%#%f '
+
+command -v dircolors >/dev/null && eval $(dircolors -p | perl -pe 's/^((CAP|S[ET]|O[TR]|M|E)\w+).*/$1 00/' | dircolors -)
 alias ls='ls --color=auto'
 alias grep='grep --color=auto'
 alias diff='diff --color=auto'
