@@ -52,6 +52,10 @@ alias grep='grep --color=auto'
 alias diff='diff --color=auto'
 
 export LESS="--RAW-CONTROL-CHARS --use-color"
+# prompt once before removing more than three files, or when removing recursively
+alias rm='rm -I'
+alias cp='cp -i'
+alias mv='mv -i'
 
 # this is a backup plan in case normal GUI gpg setup fails,
 # so it need not to be perfect, anywhere accessible is ok
