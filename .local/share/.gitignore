@@ -4,9 +4,11 @@
 /PrismLauncher/
 /Steam/
 /Trash/
+/Zotero/
 /applications/mimeinfo.cache
 /arduino15/
 /cargo/
+/direnv/allow/
 /dotnet/
 /emacs/
 /fcitx5/rime/build/
@@ -20,11 +22,10 @@
 /man/
 /mime/
 /org.localsend.localsend_app/
-/remmina/
 /rustup/
+/virtualenv/py_info/2/
 /vlc/
 /vulkan/
 /wineprefixes/
 /zathura/
 /zsh/history
-/Zotero/
