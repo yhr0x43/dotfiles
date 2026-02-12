@@ -1,3 +1,4 @@
+# -*- mode: shell-script -*-
 # ~/.config/zsh/.zshrc_distrobox
 
 # If not from distrobox, don't do anything
