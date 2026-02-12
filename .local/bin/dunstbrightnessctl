@@ -1,0 +1,10 @@
+#!/usr/bin/env sh
+# dunstbrightnessctl
+
+light_max=$(brightnessctl max)
+light_val=$(brightnessctl get)
+light_percent=$(echo "100 * $light_val / $light_max" | bc)
+
+dunstify --appname=Brightness --urgency=low --icon=video-display --timeout=500 \
+         --hints=string:x-dunst-stack-tag:"dunstbrightnessctl" \
+         --hints=int:value:"$light_percent" "明るさ：${light_percent}%"

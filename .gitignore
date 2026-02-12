@@ -42,8 +42,6 @@
 /.pub-cache
 
 # Not Managed by Git
-/.local/bin/
-!/.local/bin/generate-gnupg-sockets
 /.local/share/gnupg/
 !/.local/share/gnupg/gpg-agent.conf
 /.local/share/password-store/
