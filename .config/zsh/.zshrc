@@ -41,7 +41,7 @@ function venv_ps(){
 }
 
 # disables prompt mangling in virtual_env/bin/activate
-export VIRTUAL_ENV_DISABLE_PROMPT=1
+VIRTUAL_ENV_DISABLE_PROMPT=1
 
 setopt PROMPT_SUBST
 PS1='%F{green}$(venv_ps)%f%(1j:%F{yellow}[%j]%f:)%(?::%F{red}(%?%)%f)%m:%F{blue}%~%f%F{green}%#%f '
@@ -51,7 +51,8 @@ alias ls='ls --color=auto'
 alias grep='grep --color=auto'
 alias diff='diff --color=auto'
 
-export LESS="--RAW-CONTROL-CHARS --use-color"
+LESS="--RAW-CONTROL-CHARS --use-color"
+
 # prompt once before removing more than three files, or when removing recursively
 alias rm='rm -I'
 alias cp='cp -i'
@@ -59,7 +60,7 @@ alias mv='mv -i'
 
 # this is a backup plan in case normal GUI gpg setup fails,
 # so it need not to be perfect, anywhere accessible is ok
-export GPG_TTY=$(tty)
+GPG_TTY=$(tty)
 
 alias arduino-cli='arduino-cli --config-file $XDG_CONFIG_HOME/arduino15/arduino-cli.yaml'
 
