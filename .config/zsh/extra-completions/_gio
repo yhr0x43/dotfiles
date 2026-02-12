@@ -1,0 +1,878 @@
+#compdef gio
+
+# https://gist.github.com/tgran2028/dc2917050ec4259921591d84da2abf25
+
+# Usage:
+#   gio COMMAND [ARGS…]
+#
+# Commands:
+#   help     Print help
+#   version  Print version
+#   cat      Concatenate files to standard output
+#   copy     Copy one or more files
+#   info     Show information about locations
+#   launch   Launch an application from a desktop file
+#   list     List the contents of locations
+#   mime     Get or set the handler for a mimetype
+#   mkdir    Create directories
+#   monitor  Monitor files and directories for changes
+#   mount    Mount or unmount the locations
+#   move     Move one or more files
+#   open     Open files with the default application
+#   rename   Rename a file
+#   remove   Delete one or more files
+#   save     Read from standard input and save
+#   set      Set a file attribute
+#   trash    Move files or directories to the trash
+#   tree     Lists the contents of locations in a tree
+#
+# Use “gio help COMMAND” to get detailed help.
+
+# Usage:
+#   gio cat LOCATION…
+#
+# Concatenate files and print to standard output.
+#
+# gio cat works just like the traditional cat utility, but using GIO
+# locations instead of local files: for example, you can use something
+# like smb://server/resource/file.txt as location.
+
+autoload -U is-at-least
+
+_gio() {
+    typeset -A opt_args
+    typeset -a _arguments_options
+    local ret=1
+
+    if is-at-least 5.2; then
+        _arguments_options=(-s -S -C)
+    else
+        _arguments_options=(-s -C)
+    fi
+
+    local context curcontext="$curcontext" state line
+    _arguments "${_arguments_options[@]}" : \
+'-h[Print help]' \
+'--help[Print help]' \
+":: :_gio_commands" \
+"*::: :->gio" \
+&& ret=0
+    case $state in
+    (gio)
+        words=($line[1] "${words[@]}")
+        (( CURRENT += 1 ))
+        curcontext="${curcontext%:*:*}:gio-command-$line[1]:"
+        case $line[1] in
+            (bug-report)
+_arguments "${_arguments_options[@]}" : \
+'-h[Print help]' \
+'--help[Print help]' \
+&& ret=0
+;;
+(completions)
+_arguments "${_arguments_options[@]}" : \
+'-h[Print help]' \
+'--help[Print help]' \
+':shell:(bash elvish fish nushell power-shell zsh)' \
+&& ret=0
+;;
+(config)
+_arguments "${_arguments_options[@]}" : \
+'-h[Print help]' \
+'--help[Print help]' \
+'::name -- Configuration key to edit:_default' \
+'::value -- Value to place into that key:_default' \
+&& ret=0
+;;
+(explain)
+_arguments "${_arguments_options[@]}" : \
+'-s+[The status code of the previously run command as an unsigned or signed 32bit integer]:STATUS_CODE:_default' \
+'--status=[The status code of the previously run command as an unsigned or signed 32bit integer]:STATUS_CODE:_default' \
+'*--pipestatus=[Bash, Fish and Zsh support returning codes for each process in a pipeline]:PIPESTATUS:_default' \
+'-w+[The width of the current interactive terminal]:TERMINAL_WIDTH:_default' \
+'--terminal-width=[The width of the current interactive terminal]:TERMINAL_WIDTH:_default' \
+'-p+[The path that the prompt should render for]:PATH:_files' \
+'--path=[The path that the prompt should render for]:PATH:_files' \
+'-P+[The logical path that the prompt should render for. This path should be a virtual/logical representation of the PATH argument]:LOGICAL_PATH:_files' \
+'--logical-path=[The logical path that the prompt should render for. This path should be a virtual/logical representation of the PATH argument]:LOGICAL_PATH:_files' \
+'-d+[The execution duration of the last command, in milliseconds]:CMD_DURATION:_default' \
+'--cmd-duration=[The execution duration of the last command, in milliseconds]:CMD_DURATION:_default' \
+'-k+[The keymap of fish/zsh/cmd]:KEYMAP:_default' \
+'--keymap=[The keymap of fish/zsh/cmd]:KEYMAP:_default' \
+'-j+[The number of currently running jobs]:JOBS:_default' \
+'--jobs=[The number of currently running jobs]:JOBS:_default' \
+'--shlvl=[The current value of SHLVL, for shells that mis-handle it in \$()]:SHLVL:_default' \
+'-h[Print help]' \
+'--help[Print help]' \
+&& ret=0
+;;
+
+# Usage:
+#   gio copy [OPTION…] SOURCE… DESTINATION
+#
+# Copy one or more files from SOURCE to DESTINATION.
+#
+# Options:
+#   -T, --no-target-directory     No target directory
+#   -p, --progress                Show progress
+#   -i, --interactive             Prompt before overwrite
+#   --preserve                    Preserve all attributes
+#   -b, --backup                  Backup existing destination files
+#   -P, --no-dereference          Never follow symbolic links
+#   --default-permissions         Use default permissions for the destination
+#   --default-modified-time       Use default file modification timestamps for the destination
+#
+# gio copy is similar to the traditional cp utility, but using GIO
+# locations instead of local files: for example, you can use something
+# like smb://server/resource/file.txt as location.
+(copy)
+_arguments "${_arguments_options[@]}" : \
+'-T[No target directory]' \
+'--no-target-directory[No target directory]' \
+'-p[Show progress]' \
+'--progress[Show progress]' \
+'-i[Prompt before overwrite]' \
+'--interactive[Prompt before overwrite]' \
+'--preserve[Preserve all attributes]' \
+'--default-permissions[Use default permissions for the destination]' \
+'--default-modified-time[Use default file modification timestamps for the destination]' \
+'-b[Backup existing destination files]' \
+'--backup[Backup existing destination files]' \
+'-P[Never follow symbolic links]' \
+'--no-dereference[Never follow symbolic links]' \
+'::source -- Source file(s) to copy:_files' \
+'::destination -- Destination file or directory:_files' \
+&& ret=0
+;;
+
+# Usage:
+#   gio info [OPTION…] LOCATION…
+#
+# Show information about locations.
+#
+# Options:
+#   -w, --query-writable            List writable attributes
+#   -f, --filesystem                Get file system info
+#   -a, --attributes=ATTRIBUTES     The attributes to get
+#   -n, --nofollow-symlinks         Don't follow symbolic links
+#
+# gio info is similar to the traditional ls utility, but using GIO
+# locations instead of local files: for example, you can use something
+# like smb://server/resource/file.txt as location. File attributes can
+# be specified with their GIO name, e.g. standard::icon, or just by
+# namespace, e.g. unix, or by “*”, which matches all attributes
+(info)
+_arguments "${_arguments_options[@]}" : \
+'-w[List writable attributes]' \
+'--query-writable[List writable attributes]' \
+'-f[Get file system info]' \
+'--filesystem[Get file system info]' \
+'-a[The attributes to get]' \
+'--attributes=[The attributes to get]' \
+'-n[Dont follow symbolic links]' \
+"--nofollow-symlinks[Don't follow symbolic links]" \
+'::location -- Location to get information about:_files' \
+'::attributes -- Attributes to get (e.g. standard::icon, unix, *):_default' \
+&& ret=0
+;;
+
+
+# Usage:
+#   gio launch DESKTOP-FILE [FILE-ARG …]
+#
+# Launch an application from a desktop file, passing optional filename arguments to it.
+(launch)
+_arguments "${_arguments_options[@]}" : \
+'::desktop-file -- Desktop file to launch:_files' \
+'::file-arg -- Optional file arguments to pass to the application:_files' \
+&& ret=0
+;;
+
+
+
+# Usage:
+#   gio list [OPTION…] [LOCATION…]
+#
+# List the contents of the locations.
+#
+# Options:
+#   -a, --attributes=ATTRIBUTES     The attributes to get
+#   -h, --hidden                    Show hidden files
+#   -l, --long                      Use a long listing format
+#   -n, --nofollow-symlinks         Don't follow symbolic links
+#   -d, --print-display-names       Print display names
+#   -u, --print-uris                Print full URIs
+#
+# gio list is similar to the traditional ls utility, but using GIO
+# locations instead of local files: for example, you can use something
+# like smb://server/resource/file.txt as location. File attributes can
+# be specified with their GIO name, e.g. standard::icon
+(list)
+_arguments "${_arguments_options[@]}" : \
+'-a[The attributes to get]' \
+'--attributes=[The attributes to get]' \
+'-h[Show hidden files]' \
+'--hidden[Show hidden files]' \
+'-l[Use a long listing format]' \
+'--long[Use a long listing format]' \
+'-n[Dont follow symbolic links]' \
+"--nofollow-symlinks[Don't follow symbolic links]" \
+'-d[Print display names]' \
+'--print-display-names[Print display names]' \
+'-u[Print full URIs]' \
+'--print-uris[Print full URIs]' \
+'::location -- Location to list contents of:_files' \
+&& ret=0
+;;
+
+# Usage:
+#   gio mime MIMETYPE [HANDLER]
+
+# Get or set the handler for a mimetype.
+
+# If no handler is given, lists registered and recommended applications
+# for the mimetype. If a handler is given, it is set as the default
+# handler for the mimetype.
+(mime)
+_arguments "${_arguments_options[@]}" : \
+'::mimetype -- Mimetype to get or set handler for:_zsh-mime-handler' \
+'::handler -- Handler to set as default for the mimetype:_files' \
+&& ret=0
+;;
+
+
+# Usage:
+#   gio mkdir [OPTION…] LOCATION…
+#
+# Create directories.
+#
+# Options:
+#   -p, --parent     Create parent directories
+#
+# gio mkdir is similar to the traditional mkdir utility, but using GIO
+# locations instead of local files: for example, you can use something
+# like smb://server/resource/mydir as location.
+(mkdir)
+_arguments "${_arguments_options[@]}" : \
+'-p[Create parent directories]' \
+'--parent[Create parent directories]' \
+'::location -- Location to create:_files' \
+&& ret=0
+;;
+
+
+
+
+# Usage:
+#   gio monitor [OPTION…] LOCATION…
+#
+# Monitor files or directories for changes.
+#
+# Options:
+#   -d, --dir=LOCATION        Monitor a directory (default: depends on type)
+#   -f, --file=LOCATION       Monitor a file (default: depends on type)
+#   -D, --direct=LOCATION     Monitor a file directly (notices changes made via hardlinks)
+#   -s, --silent=LOCATION     Monitors a file directly, but doesn't report changes
+#   -n, --no-moves            Report moves and renames as simple deleted/created events
+#   -m, --mounts              Watch for mount events
+(monitor)
+_arguments "${_arguments_options[@]}" : \
+'-d[Monitor a directory (default: depends on type)]' \
+'--dir=[Monitor a directory (default: depends on type)]' \
+'-f[Monitor a file (default: depends on type)]' \
+'--file=[Monitor a file (default: depends on type)]' \
+'-D[Monitor a file directly (notices changes made via hardlinks)]' \
+'--direct=[Monitor a file directly (notices changes made via hardlinks)]' \
+"-s[Monitors a file directly, but doesn't report changes]" \
+"--silent=[Monitors a file directly, but doesn't report changes]" \
+'-n[Report moves and renames as simple deleted/created events]' \
+'--no-moves[Report moves and renames as simple deleted/created events]' \
+'-m[Watch for mount events]' \
+'--mounts[Watch for mount events]' \
+'::location -- Location to monitor for changes:_files' \
+&& ret=0
+;;
+
+# Usage:
+#   gio mount [OPTION…] [LOCATION…]
+#
+# Mount or unmount the locations.
+#
+# Options:
+#   -m, --mountable                 Mount as mountable
+#   -d, --device=ID                 Mount volume with device file, or other identifier
+#   -u, --unmount                   Unmount
+#   -e, --eject                     Eject
+#   -t, --stop=DEVICE               Stop drive with device file
+#   -s, --unmount-scheme=SCHEME     Unmount all mounts with the given scheme
+#   -f, --force                     Ignore outstanding file operations when unmounting or ejecting
+#   -a, --anonymous                 Use an anonymous user when authenticating
+#   -l, --list                      List user-interesting volumes, drives and mounts
+#   -o, --monitor                   Monitor user-interesting volume, drive and mount events
+#   -i, --detail                    Show extra information
+#   --tcrypt-pim=PIM                The numeric PIM when unlocking a VeraCrypt volume
+#   --tcrypt-hidden                 Mount a TCRYPT hidden volume
+#   --tcrypt-system                 Mount a TCRYPT system volume
+(mount)
+_arguments "${_arguments_options[@]}" : \
+'-m[Mount as mountable]' \
+'--mountable[Mount as mountable]' \
+'-d[Mount volume with device file, or other identifier]' \
+'--device=[Mount volume with device file, or other identifier]' \
+'-u[Unmount]' \
+'--unmount[Unmount]' \
+'-e[Eject]' \
+'--eject[Eject]' \
+'-t[Stop drive with device file]' \
+'--stop=[Stop drive with device file]' \
+'-s[Unmount all mounts with the given scheme]' \
+'--unmount-scheme=[Unmount all mounts with the given scheme]' \
+'-f[Ignore outstanding file operations when unmounting or ejecting]' \
+'--force[Ignore outstanding file operations when unmounting or ejecting]' \
+'-a[Use an anonymous user when authenticating]' \
+'--anonymous[Use an anonymous user when authenticating]' \
+'-l[List user-interesting volumes, drives and mounts]' \
+'--list[List user-interesting volumes, drives and mounts]' \
+'-o[Monitor user-interesting volume, drive and mount events]' \
+'--monitor[Monitor user-interesting volume, drive and mount events]' \
+'-i[Show extra information]' \
+'--detail[Show extra information]' \
+'--tcrypt-pim=[The numeric PIM when unlocking a VeraCrypt volume]' \
+'--tcrypt-hidden[Mount a TCRYPT hidden volume]' \
+'--tcrypt-system[Mount a TCRYPT system volume]' \
+'::location -- Location to mount or unmount:_files' \
+&& ret=0
+;;
+
+# Usage:
+#   gio move [OPTION…] SOURCE… DESTINATION
+#
+# Move one or more files from SOURCE to DEST.
+#
+# Options:
+#   -T, --no-target-directory     No target directory
+#   -p, --progress                Show progress
+#   -i, --interactive             Prompt before overwrite
+#   -b, --backup                  Backup existing destination files
+#   -C, --no-copy-fallback        Don't use copy and delete fallback
+#
+# gio move is similar to the traditional mv utility, but using GIO
+# locations instead of local files: for example, you can use something
+# like smb://server/resource/file.txt as location
+(move)
+_arguments "${_arguments_options[@]}" : \
+'-T[No target directory]' \
+'--no-target-directory[No target directory]' \
+'-p[Show progress]' \
+'--progress[Show progress]' \
+'-i[Prompt before overwrite]' \
+'--interactive[Prompt before overwrite]' \
+'-b[Backup existing destination files]' \
+'--backup[Backup existing destination files]' \
+"-C[Don't use copy and delete fallback]" \
+"--no-copy-fallback[Don't use copy and delete fallback]" \
+'::source -- Source file(s) to move:_files' \
+'::destination -- Destination file or directory:_files' \
+&& ret=0
+;;
+
+# Usage:
+#   gio open LOCATION…
+#
+# Open files with the default application that
+# is registered to handle files of this type.
+(open)
+_arguments "${_arguments_options[@]}" : \
+'::location -- Location to open with the default application:_files' \
+&& ret=0
+;;
+
+# Usage:
+#   gio rename LOCATION NAME
+#
+# Rename a file.
+(rename)
+_arguments "${_arguments_options[@]}" : \
+'::location -- Location of the file to rename:_files' \
+'::name -- New name for the file:_files' \
+&& ret=0
+;;
+
+# Usage:
+#   gio remove [OPTION…] LOCATION…
+#
+# Delete the given files.
+#
+# Options:
+#   -f, --force     Ignore nonexistent files, never prompt
+(remove)
+_arguments "${_arguments_options[@]}" : \
+'-f[Ignore nonexistent files, never prompt]' \
+'--force[Ignore nonexistent files, never prompt]' \
+'::location -- Location of the file(s) to remove:_files' \
+&& ret=0
+;;
+
+
+# Usage:
+#   gio save [OPTION…] DESTINATION
+#
+# Read from standard input and save to DEST.
+#
+# Options:
+#   -b, --backup         Backup existing destination files
+#   -c, --create         Only create if not existing
+#   -a, --append         Append to end of file
+#   -p, --private        When creating, restrict access to the current user
+#   -u, --unlink         When replacing, replace as if the destination did not exist
+#   -v, --print-etag     Print new etag at end
+#   -e, --etag=ETAG      The etag of the file being overwritten
+(save)
+_arguments "${_arguments_options[@]}" : \
+'-b[Backup existing destination files]' \
+'--backup[Backup existing destination files]' \
+'-c[Only create if not existing]' \
+'--create[Only create if not existing]' \
+'-a[Append to end of file]' \
+'--append[Append to end of file]' \
+'-p[When creating, restrict access to the current user]' \
+'--private[When creating, restrict access to the current user]' \
+'-u[When replacing, replace as if the destination did not exist]' \
+'--unlink[When replacing, replace as if the destination did not exist]' \
+'-v[Print new etag at end]' \
+'--print-etag[Print new etag at end]' \
+'-e[The etag of the file being overwritten]' \
+'--etag=[The etag of the file being overwritten]' \
+'::destination -- Destination file to save to:_files' \
+&& ret=0
+;;
+
+# Usage:
+#   gio set [OPTION…] LOCATION ATTRIBUTE VALUE…
+#
+# Set a file attribute of LOCATION.
+#
+# Options:
+#   -t, --type=TYPE             Type of the attribute
+#   -n, --nofollow-symlinks     Don't follow symbolic links
+#   -d, --delete                Unset given attribute
+(set)
+_arguments "${_arguments_options[@]}" : \
+'-t[Type of the attribute]' \
+'--type=[Type of the attribute]' \
+"-n[Don't follow symbolic links]" \
+"--nofollow-symlinks[Don't follow symbolic links]" \
+'-d[Unset given attribute]' \
+'--delete[Unset given attribute]' \
+'::location -- Location to set attribute on:_files' \
+'::attribute -- Attribute to set (e.g. standard::icon):_default' \
+'::value -- Value to set for the attribute:_default' \
+&& ret=0
+;;
+
+# Usage:
+#   gio trash [OPTION…] [LOCATION…]
+#
+# Move/Restore files or directories to the trash.
+#
+# Options:
+#   -f, --force     Ignore nonexistent files, never prompt
+#   --empty         Empty the trash
+#   --list          List files in the trash with their original locations
+#   --restore       Restore a file from trash to its original location (possibly recreating the directory)
+#
+# Note: for --restore switch, if the original location of the trashed file
+# already exists, it will not be overwritten unless --force is set.
+(trash)
+_arguments "${_arguments_options[@]}" : \
+'-f[Ignore nonexistent files, never prompt]' \
+'--force[Ignore nonexistent files, never prompt]' \
+'--empty[Empty the trash]' \
+'--list[List files in the trash with their original locations]' \
+'--restore[Restore a file from trash to its original location (possibly recreating the directory)]' \
+'::location -- Location to move to trash or restore from trash:_files' \
+&& ret=0
+;;
+
+# Usage:
+#   gio tree [OPTION…] [LOCATION…]
+#
+# List contents of directories in a tree-like format.
+#
+# Options:
+#   -h, --hidden              Show hidden files
+#   -l, --follow-symlinks     Follow symbolic links, mounts and shortcuts
+(tree)
+_arguments "${_arguments_options[@]}" : \
+'-h[Show hidden files]' \
+'--hidden[Show hidden files]' \
+'-l[Follow symbolic links, mounts and shortcuts]' \
+'--follow-symlinks[Follow symbolic links, mounts and shortcuts]' \
+'::location -- Location to list contents of in a tree format:_files' \
+&& ret=0
+
+case $state in
+    (help)
+        words=($line[1] "${words[@]}")
+        (( CURRENT += 1 ))
+        curcontext="${curcontext%:*:*}:gio-help-command-$line[1]:"
+        case $line[1] in
+            (bug-report)
+_arguments "${_arguments_options[@]}" : \
+&& ret=0
+;;
+(completions)
+_arguments "${_arguments_options[@]}" : \
+&& ret=0
+;;
+(config)
+_arguments "${_arguments_options[@]}" : \
+&& ret=0
+;;
+(explain)
+_arguments "${_arguments_options[@]}" : \
+&& ret=0
+;;
+(init)
+_arguments "${_arguments_options[@]}" : \
+&& ret=0
+;;
+(module)
+_arguments "${_arguments_options[@]}" : \
+&& ret=0
+;;
+(preset)
+_arguments "${_arguments_options[@]}" : \
+&& ret=0
+;;
+(print-config)
+_arguments "${_arguments_options[@]}" : \
+&& ret=0
+;;
+(prompt)
+_arguments "${_arguments_options[@]}" : \
+&& ret=0
+;;
+(session)
+_arguments "${_arguments_options[@]}" : \
+&& ret=0
+;;
+(time)
+_arguments "${_arguments_options[@]}" : \
+&& ret=0
+;;
+(timings)
+_arguments "${_arguments_options[@]}" : \
+&& ret=0
+;;
+(toggle)
+_arguments "${_arguments_options[@]}" : \
+&& ret=0
+;;
+(help)
+_arguments "${_arguments_options[@]}" : \
+&& ret=0
+;;
+        esac
+    ;;
+esac
+;;
+        esac
+    ;;
+esac
+}
+
+
+
+
+# Usage:
+#   gio COMMAND [ARGS…]
+#
+# Commands:
+#   help     Print help
+#   version  Print version
+#   cat      Concatenate files to standard output
+#   copy     Copy one or more files
+#   info     Show information about locations
+#   launch   Launch an application from a desktop file
+#   list     List the contents of locations
+#   mime     Get or set the handler for a mimetype
+#   mkdir    Create directories
+#   monitor  Monitor files and directories for changes
+#   mount    Mount or unmount the locations
+#   move     Move one or more files
+#   open     Open files with the default application
+#   rename   Rename a file
+#   remove   Delete one or more files
+#   save     Read from standard input and save
+#   set      Set a file attribute
+#   trash    Move files or directories to the trash
+#   tree     Lists the contents of locations in a tree
+#
+# Use “gio help COMMAND” to get detailed help.
+
+(( $+functions[_gio_commands] )) ||
+_gio_commands() {
+    local commands
+    commands=(
+'help:Print help' \
+'version:Print version' \
+'cat:Concatenate files to standard output' \
+'copy:Copy one or more files' \
+'info:Show information about locations' \
+'launch:Launch an application from a desktop file' \
+'list:List the contents of locations' \
+'mime:Get or set the handler for a mimetype' \
+'mkdir:Create directories' \
+'monitor:Monitor files and directories for changes' \
+'mount:Mount or unmount the locations' \
+'move:Move one or more files' \
+'open:Open files with the default application' \
+'rename:Rename a file' \
+'remove:Delete one or more files' \
+'save:Read from standard input and save' \
+'set:Set a file attribute' \
+'trash:Move files or directories to the trash' \
+'tree:Lists the contents of locations in a tree' \
+    )
+    _describe -t commands 'gio commands' commands "$@"
+}
+
+(( $+functions[_gio__cat_commands] )) ||
+_gio__cat_commands() {
+    local commands; commands=()
+    _describe -t commands 'gio cat commands' commands "$@"
+}
+
+(( $+functions[_gio__copy_commands] )) ||
+_gio__copy_commands() {
+    local commands; commands=()
+    _describe -t commands 'gio copy commands' commands "$@"
+}
+
+(( $+functions[_gio__info_commands] )) ||
+_gio__info_commands() {
+    local commands; commands=()
+    _describe -t commands 'gio info commands' commands "$@"
+}
+
+(( $+functions[_gio__launch_commands] )) ||
+_gio__launch_commands() {
+    local commands; commands=()
+    _describe -t commands 'gio launch commands' commands "$@"
+}
+
+(( $+functions[_gio__list_commands] )) ||
+_gio__list_commands() {
+    local commands; commands=()
+    _describe -t commands 'gio list commands' commands "$@"
+}
+
+(( $+functions[_gio__mime_commands] )) ||
+_gio__mime_commands() {
+    local commands; commands=()
+    _describe -t commands 'gio mime commands' commands "$@"
+}
+
+(( $+functions[_gio__mkdir_commands] )) ||
+_gio__mkdir_commands() {
+    local commands; commands=()
+    _describe -t commands 'gio mkdir commands' commands "$@"
+}
+
+(( $+functions[_gio__monitor_commands] )) ||
+_gio__monitor_commands() {
+    local commands; commands=()
+    _describe -t commands 'gio monitor commands' commands "$@"
+}
+
+(( $+functions[_gio__mount_commands] )) ||
+_gio__mount_commands() {
+    local commands; commands=()
+    _describe -t commands 'gio mount commands' commands "$@"
+}
+
+(( $+functions[_gio__move_commands] )) ||
+_gio__move_commands() {
+    local commands; commands=()
+    _describe -t commands 'gio move commands' commands "$@"
+}
+
+(( $+functions[_gio__open_commands] )) ||
+_gio__open_commands() {
+    local commands; commands=()
+    _describe -t commands 'gio open commands' commands "$@"
+}
+
+(( $+functions[_gio__rename_commands] )) ||
+_gio__rename_commands() {
+    local commands; commands=()
+    _describe -t commands 'gio rename commands' commands "$@"
+}
+
+(( $+functions[_gio__remove_commands] )) ||
+_gio__remove_commands() {
+    local commands; commands=()
+    _describe -t commands 'gio remove commands' commands "$@"
+}
+
+(( $+functions[_gio__save_commands] )) ||
+_gio__save_commands() {
+    local commands; commands=()
+    _describe -t commands 'gio save commands' commands "$@"
+}
+
+(( $+functions[_gio__set_commands] )) ||
+_gio__set_commands() {
+    local commands; commands=()
+    _describe -t commands 'gio set commands' commands "$@"
+}
+
+(( $+functions[_gio__trash_commands] )) ||
+_gio__trash_commands() {
+    local commands; commands=()
+    _describe -t commands 'gio trash commands' commands "$@"
+}
+
+(( $+functions[_gio__tree_commands] )) ||
+_gio__tree_commands() {
+    local commands; commands=()
+    _describe -t commands 'gio tree commands' commands "$@"
+}
+
+(( $+functions[_gio__help_commands] )) ||
+_gio__help_commands() {
+    local commands; commands=(
+    'version:Print version' \
+    'cat:Concatenate files to standard output' \
+    'copy:Copy one or more files' \
+    'info:Show information about locations' \
+    'launch:Launch an application from a desktop file' \
+    'list:List the contents of locations' \
+    'mime:Get or set the handler for a mimetype' \
+    'mkdir:Create directories' \
+    'monitor:Monitor files and directories for changes' \
+    'mount:Mount or unmount the locations' \
+    'move:Move one or more files' \
+    'open:Open files with the default application' \
+    'rename:Rename a file' \
+    'remove:Delete one or more files' \
+    'save:Read from standard input and save' \
+    'set:Set a file attribute' \
+    'trash:Move files or directories to the trash' \
+    'tree:Lists the contents of locations in a tree' \
+    )
+    _describe -t commands 'gio help commands' commands "$@"
+}
+
+(( $+functions[_gio__help_cat_commands] )) ||
+_gio__help_cat_commands() {
+    local commands; commands=()
+    _describe -t commands 'gio help cat commands' commands "$@"
+}
+
+(( $+functions[_gio__help_copy_commands] )) ||
+_gio__help_copy_commands() {
+    local commands; commands=()
+    _describe -t commands 'gio help copy commands' commands "$@"
+}
+
+(( $+functions[_gio__help_info_commands] )) ||
+_gio__help_info_commands() {
+    local commands; commands=()
+    _describe -t commands 'gio help info commands' commands "$@"
+}
+
+(( $+functions[_gio__help_launch_commands] )) ||
+_gio__help_launch_commands() {
+    local commands; commands=()
+    _describe -t commands 'gio help launch commands' commands "$@"
+}
+
+(( $+functions[_gio__help_list_commands] )) ||
+_gio__help_list_commands() {
+    local commands; commands=()
+    _describe -t commands 'gio help list commands' commands "$@"
+}
+
+(( $+functions[_gio__help_mime_commands] )) ||
+_gio__help_mime_commands() {
+    local commands; commands=()
+    _describe -t commands 'gio help mime commands' commands "$@"
+}
+
+(( $+functions[_gio__help_mkdir_commands] )) ||
+_gio__help_mkdir_commands() {
+    local commands; commands=()
+    _describe -t commands 'gio help mkdir commands' commands "$@"
+}
+
+(( $+functions[_gio__help_monitor_commands] )) ||
+_gio__help_monitor_commands() {
+    local commands; commands=()
+    _describe -t commands 'gio help monitor commands' commands "$@"
+}
+
+(( $+functions[_gio__help_mount_commands] )) ||
+_gio__help_mount_commands() {
+    local commands; commands=()
+    _describe -t commands 'gio help mount commands' commands "$@"
+}
+
+(( $+functions[_gio__help_move_commands] )) ||
+_gio__help_move_commands() {
+    local commands; commands=()
+    _describe -t commands 'gio help move commands' commands "$@"
+}
+
+(( $+functions[_gio__help_open_commands] )) ||
+_gio__help_open_commands() {
+    local commands; commands=()
+    _describe -t commands 'gio help open commands' commands "$@"
+}
+
+(( $+functions[_gio__help_rename_commands] )) ||
+_gio__help_rename_commands() {
+    local commands; commands=()
+    _describe -t commands 'gio help rename commands' commands "$@"
+}
+
+(( $+functions[_gio__help_remove_commands] )) ||
+_gio__help_remove_commands() {
+    local commands; commands=()
+    _describe -t commands 'gio help remove commands' commands "$@"
+}
+
+(( $+functions[_gio__help_save_commands] )) ||
+_gio__help_save_commands() {
+    local commands; commands=()
+    _describe -t commands 'gio help save commands' commands "$@"
+}
+
+(( $+functions[_gio__help_set_commands] )) ||
+_gio__help_set_commands() {
+    local commands; commands=()
+    _describe -t commands 'gio help set commands' commands "$@"
+}
+
+(( $+functions[_gio__help_trash_commands] )) ||
+_gio__help_trash_commands() {
+    local commands; commands=()
+    _describe -t commands 'gio help trash commands' commands "$@"
+}
+
+(( $+functions[_gio__help_tree_commands] )) ||
+_gio__help_tree_commands() {
+    local commands; commands=()
+    _describe -t commands 'gio help tree commands' commands "$@"
+}
+
+if [ "$funcstack[1]" = "_gio" ]; then
+    _gio "$@"
+else
+    compdef _gio gio
+fi
+
+# Local Variables:
+# mode: sh
+# End:

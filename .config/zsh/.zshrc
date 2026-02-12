@@ -17,12 +17,16 @@ then
     XDG_STATE_HOME=${XDG_STATE_HOME:-${HOME}/.local/state}
     XDG_CACHE_HOME=${XDG_CACHE_HOME:-${HOME}/.cache}
 
+    fpath=(${HOME}/.config/zsh/extra-completions $fpath)
+
     [ -d ${XDG_DATA_HOME}/zsh ] || mkdir -p ${XDG_DATA_HOME}/zsh
     [ -d ${XDG_CACHE_HOME}/zsh ] || mkdir -p ${XDG_CACHE_HOME}/zsh
 
     HISTFILE=${XDG_DATA_HOME}/zsh/history
     zstyle ':completion:*' cache-path ${XDG_CACHE_HOME}/zsh/zcompcache
     compinit -d ${XDG_CACHE_HOME}/zsh/zcompdump-$ZSH_VERSION
+else
+    compinit -d ${HOME}/.cache/zsh/zcompdump-${ZSH_VERSION}
 fi
 
 command -v direnv >/dev/null && eval "$(direnv hook zsh)"
