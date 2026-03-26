@@ -1,4 +1,5 @@
 [Added Associations]
+text/html=librewolf.desktop;
 
 [Removed Associations]
 
@@ -21,3 +22,4 @@ image/avif=imv.desktop;
 image/jxl=imv.desktop;
 image/webp=imv.desktop;
 image/qoi=imv.desktop;
+x-scheme-handler/discord=vesktop.desktop
