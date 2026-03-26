@@ -3,3 +3,5 @@
 [user]
         email = yhr0x43@gmail.com
         name = yhr0x43
+[alias]
+	root = rev-parse --show-toplevel
