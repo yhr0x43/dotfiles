@@ -1,9 +1,11 @@
 /*.xbel*
 /DBeaverData/
+/JetBrains/
 /NuGet/
 /PrismLauncher/
 /Steam/
 /Trash/
+/WeChat_Data/
 /Zotero/
 /applications/mimeinfo.cache
 /arduino15/
@@ -21,10 +23,12 @@
 /gvfs-metadata/
 /hyprland/
 /icons/
+/jupyter/
 /man/
 /mime/
 /org.localsend.localsend_app/
 /password-store/
+/pnpm/
 /rustup/
 /virtualenv/py_info/2/
 /vlc/
