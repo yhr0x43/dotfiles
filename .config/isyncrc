@@ -72,3 +72,25 @@ Patterns *
 Create Both
 Expunge Both
 SyncState *
+
+# ----------------------------------------------------------------------------------------------------
+
+IMAPStore yhrcdev-remote
+Host yhrc.dev
+UserCmd "pass show mail/yhrc.dev/me | awk '/^login: (.*)/{print(substr($0,8))}'"
+PassCmd "pass show mail/yhrc.dev/me | awk 'NR==1'"
+TLSType IMAPS
+CertificateFile /etc/ssl/certs/ca-certificates.crt
+
+MaildirStore yhrcdev-local
+SubFolders Verbatim
+Path ~/.local/mail/yhrc.dev/
+Inbox ~/.local/mail/yhrc.dev/inbox
+
+Channel yhrcdev
+Far :yhrcdev-remote:
+Near :yhrcdev-local:
+Patterns *
+Create Both
+Expunge Both
+SyncState *

@@ -41,6 +41,13 @@
          ("C->" . mc/mark-next-like-this)
          ("C-<" . mc/mark-previous-like-this)))
 
+(defun make-mu4e-subdir-context (prefix email)
+  (make-mu4e-context
+   :name email
+   :match-func
+   (lambda (msg)
+     (when msg (sting-prefix-p prefix (mu4e-message-field msg :maildir))))))
+
 (use-package rust-mode
   :init
   (setq rust-mode-treesitter-derive t))
@@ -49,10 +56,10 @@
 (use-package mu4e
   :config
   ;; This is set to 't' to avoid mail syncing issues when using mbsync
-  (setq mu4e-change-filenames-when-moving t)
-
-  (setq mu4e-get-mail-command "mbsync -a")
-  (setq mu4e-maildir "~/.local/mail")
+  (setq mu4e-change-filenames-when-moving t
+        mu4e-update-interval nil
+        mu4e-maildir "~/.local/mail"
+        mu4e-get-mail-command "mbsync -a")
 
   ;; Context specific variables are set in local/user.el
   (setq mu4e-contexts
@@ -62,13 +69,13 @@
           :match-func
           (lambda (msg)
             (when msg
-              (string-prefix-p rc/gmail0-dir (mu4e-message-field msg :maildir))))
+              (string-prefix-p "/gmail0" (mu4e-message-field msg :maildir))))
           :vars `((user-mail-address . ,rc/gmail0-email)
                   (user-full-name    . ,rc/gmail0-fullname)
-                  (mu4e-drafts-folder . ,(concat rc/gmail0-dir "/Drafts"))
-                  (mu4e-sent-folder   . ,(concat rc/gmail0-dir "/Sent Mail"))
-                  (mu4e-refile-folder . ,(concat rc/gmail0-dir "/All Mail"))
-                  (mu4e-trash-folder  . ,(concat rc/gmail0-dir "/Trash"))))
+                  (mu4e-drafts-folder . "/gmail0/Drafts")
+                  (mu4e-sent-folder   . "/gmail0/Sent Mail")
+                  (mu4e-refile-folder . "/gmail0/All Mail")
+                  (mu4e-trash-folder  . "/gmail0/Trash")))
          (make-mu4e-context
           :name rc/yhrcl-name
           :match-func
@@ -77,12 +84,15 @@
               (string-prefix-p rc/yhrcl-dir (mu4e-message-field msg :maildir))))
           :vars `((user-mail-address . ,rc/yhrcl-email)
                   (user-full-name    . ,rc/yhrcl-fullname)
-                  (mu4e-drafts-folder . "/Drafts")
-                  (mu4e-sent-folder   . "/Sent")
-                  (mu4e-refile-folder . "/Archive")
-                  (mu4e-trash-folder  . "/Trash")))))
-  (setq mu4e-maildir-shortcuts
-        '(("/Inbox" . ?i))))
+                  (mu4e-drafts-folder . ,(concat rc/yhrcl-dir "/drafts"))
+                  (mu4e-sent-folder   . ,(concat rc/yhrcl-dir "/sent"))
+                  (mu4e-refile-folder . ,(concat rc/yhrcl-dir "/archive"))
+                  (mu4e-trash-folder  . ,(concat rc/yhrcl-dir "/trash"))))))
+  (setq mu4e-maildir-shortcuts '((:maildir "/gmail0/inbox" :key ?g)
+                                 (:maildir "/yhrcl/inbox" :key ?l)
+                                 (:maildir "/yhrc.dev/inbox" :key ?d)))
+  (add-to-list 'mu4e-bookmarks
+               '(:name "All Inboxes" :query "m:/yhrcl/Inbox or m:/gmail0/Inbox" :key ?i)))
 
 (use-package cc-mode
   :config
