@@ -16,12 +16,15 @@
 /fcitx5/rime/luna_pinyin.userdb/
 /fcitx5/rime/sync/
 /fcitx5/rime/user.yaml
+/gnupg/
+!/gnupg/gpg-agent.conf
 /gvfs-metadata/
 /hyprland/
 /icons/
 /man/
 /mime/
 /org.localsend.localsend_app/
+/password-store/
 /rustup/
 /virtualenv/py_info/2/
 /vlc/

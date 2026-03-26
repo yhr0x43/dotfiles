@@ -42,11 +42,7 @@
 /.pub-cache
 
 # Not Managed by Git
-/.local/share/gnupg/
-!/.local/share/gnupg/gpg-agent.conf
-/.local/share/password-store/
+/.local/aur/
 /.local/src/
 !/.local/src/app2unit
 /.local/mail/
-/.config/git/
-!/.config/git/config

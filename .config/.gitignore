@@ -13,6 +13,8 @@
 /freerdp/
 /furnace/
 /ghidra/
+/git/
+!/git/config
 /go/
 /gtk-3.0/bookmarks
 /ibus/
