@@ -25,19 +25,25 @@
          ("C-," . duplicate-line)
          ("C-." . copy-from-above-command)))
 
+(use-package llvm-mode
+  :load-path "local/llvm-mode")
+
 (use-package dired
   :bind (:map dired-mode-map
               ("r" . dired-kill-subdir)))
 
 (use-package whitespace-mode
-  :hook ((before-save . whitespace-cleanup)
-         (c-mode . whitespace-mode)
+  :hook ((c-mode . whitespace-mode)
          (emacs-lisp-mode . whitespace-mode)))
 
 (use-package multiple-cursors
   :bind (("C-<return>" . mc/edit-lines)
          ("C->" . mc/mark-next-like-this)
          ("C-<" . mc/mark-previous-like-this)))
+
+(use-package rust-mode
+  :init
+  (setq rust-mode-treesitter-derive t))
 
 ;; https://systemcrafters.net/emacs-mail/managing-multiple-accounts/
 (use-package mu4e
@@ -91,9 +97,10 @@
 ;;(use-package powershell)
 
 (use-package forth-mode
-  :load-path (lambda () (when (eq system-type 'windows-nt) "c:/Program Files/gforth"))
-  :init
-  (load "gforth"))
+  :load-path (lambda () (when (eq system-type 'windows-nt) "c:/Program Files/gforth")))
+
+(use-package wat-mode
+  :load-path "local/wat-mode")
 
 ;;(use-package rainbow-delimiters
 ;;  :hook emacs-lisp-mode)
